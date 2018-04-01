@@ -15,8 +15,18 @@ import tn.optile.task.client.info.IAccountInfo;
 import tn.optile.task.client.list.IListContent;
 import tn.optile.task.client.list.ListContentImpl;
 
+/**
+ * Configures classes dependencies
+ * 
+ * @author otoukebri
+ *
+ */
 public class DropboxClientModule extends AbstractModule {
-
+	
+	/**
+	 *  This tells Guice that whenever it sees a dependency on
+	 *  IDropboxClient  it should satisfy the dependency using a DropboxClientImpl.
+	 */
 	@Override
 	protected void configure() {
 		bind(IDropboxClient.class).to(DropboxClientImpl.class);

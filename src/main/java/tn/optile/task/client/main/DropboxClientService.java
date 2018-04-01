@@ -16,6 +16,14 @@ import tn.optile.task.client.info.IAccountInfo;
 import tn.optile.task.client.list.IListContent;
 import tn.optile.task.client.utils.Utils;
 
+/**
+ * 
+ * FSM that handles commands of the application
+ * after validating input arguments 
+ * 
+ * @author otoukebri
+ *
+ */
 public class DropboxClientService {
 
 	private IAuthentication authentication;
@@ -32,7 +40,13 @@ public class DropboxClientService {
 		this.accountInfo = accountInfo;
 		this.listContent = listContent;
 	}
-
+	
+	/**
+	 * FSM to invoke different application services
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public void callService(String[] args) throws Exception {
 		if (args.length == 0) {
 			throw new Exception("Invalid command : valid commands are : auth, info, list");
@@ -83,7 +97,15 @@ public class DropboxClientService {
 			throw new Exception("Invalid command :  valid commands are: auth, info, list");
 		}
 	}
-
+	
+	/**
+	 * Displays content of given path
+	 * 
+	 * @param result
+	 * @param path
+	 * @throws ListFolderErrorException
+	 * @throws DbxException
+	 */
 	public void list(ListFolderResult result, String path) throws ListFolderErrorException, DbxException {
 		System.out.println(path);
 		while (true) {
@@ -109,7 +131,12 @@ public class DropboxClientService {
 		}
 
 	}
-
+	
+	/**
+	 * Displays informations about user's account
+	 * 
+	 * @param fullAccount
+	 */
 	public void info(FullAccount fullAccount) {
 		System.out.println("User ID: " + fullAccount.getAccountId());
 		System.out.println("Display name!: " + fullAccount.getName().getDisplayName());
@@ -120,7 +147,15 @@ public class DropboxClientService {
 		System.out.println("Referral link: " + fullAccount.getReferralLink());
 
 	}
-
+	
+	/**
+	 * Process authentication steps
+	 * 
+	 * @param appKey
+	 * @param secretKey
+	 * @return
+	 * @throws IOException
+	 */
 	private String authenticateUser(String appKey, String secretKey) throws IOException {
 		String authMsg = displayAuthenticateMessage();
 		System.out.println(authMsg);
@@ -131,7 +166,11 @@ public class DropboxClientService {
 		System.out.println("Your access token: " + authenticationToken);
 		return authenticationToken;
 	}
-
+	
+	/**
+	 * Displays instructions of authentication command
+	 *
+	 */
 	private String displayAuthenticateMessage() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("");
