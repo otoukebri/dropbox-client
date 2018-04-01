@@ -96,10 +96,10 @@ public class AuthenticationTest {
 		DbxAuthFinish actual = new DbxWebAuth(mockConfig, APP).finishFromRedirect(redirectUri, sessionStore,
 				params("code", "test-code", "state", extractQueryParam(authorizationUrl, "state")));
 
-		NativeDropboxImpl NativeDropboxDbxMock = mock(NativeDropboxImpl.class);
-		when(NativeDropboxDbxMock.getAuthorizeUrl(anyString(), anyString())).thenReturn("http://some/url");
-		when(NativeDropboxDbxMock.authenticate(anyString())).thenReturn(actual);
-		return NativeDropboxDbxMock;
+		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		when(nativeDropboxDbxMock.getAuthorizeUrl(anyString(), anyString())).thenReturn("http://some/url");
+		when(nativeDropboxDbxMock.authenticate(anyString())).thenReturn(actual);
+		return nativeDropboxDbxMock;
 	}
 
 	private static Map<String, String[]> params(String... pairs) {

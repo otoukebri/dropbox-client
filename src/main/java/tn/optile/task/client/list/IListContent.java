@@ -6,5 +6,5 @@ import com.dropbox.core.v2.files.ListFolderResult;
 
 public interface IListContent {
 
-	public ListFolderResult listContent(String token, String path) throws ListFolderErrorException, DbxException;
+	public ListFolderResult listContent(String token, String path, String locale) throws ListFolderErrorException, DbxException;
 }

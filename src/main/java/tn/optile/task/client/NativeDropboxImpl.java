@@ -44,12 +44,12 @@ public class NativeDropboxImpl implements INativeDropbox {
 		return dbxClient.users().getCurrentAccount();
 	}
 
-	public DbxClientV2 initializeClient(String token, String locate) {
-		if (locate == null || locate.isEmpty())
+	public DbxClientV2 initializeClient(String token, String locale) {
+		if (locale == null || locale.isEmpty())
 			return new DbxClientV2(requestConfig, token);
 		else {
 			DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder(CLIENT_IDENTIFIER)
-					.withUserLocale(locate)
+					.withUserLocale(locale)
 					.build();
 
 			return new DbxClientV2(requestConfig, token);

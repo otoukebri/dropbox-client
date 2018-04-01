@@ -37,7 +37,7 @@ public class ListContentTest {
 
 	@Test
 	public void testlistContent() throws ListFolderErrorException, DbxException {
-		ListFolderResult listFolderResult = listContent.listContent("", "");
+		ListFolderResult listFolderResult = listContent.listContent("", "", "");
 		List<Metadata> entries = listFolderResult.getEntries();
 		assertEquals(1, entries.size());
 		assertEquals("test", entries.get(0).getName());

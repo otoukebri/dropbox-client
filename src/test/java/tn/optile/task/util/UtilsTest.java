@@ -16,8 +16,6 @@ public class UtilsTest {
 		assertEquals("900.00 Bytes", Utils.formatFileSize(900));
 		assertEquals("900.00 KB", Utils.formatFileSize(900*1024));
 		assertEquals("900.00 MB", Utils.formatFileSize(900*1024*1024));
-//		assertEquals("900.00 GB", Utils.formatFileSize(900*1024*1024*1024));
-		
 	}
 	
 

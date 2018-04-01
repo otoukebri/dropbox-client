@@ -52,41 +52,30 @@ public class DropboxClientService {
 				String token = args[1];
 				if (args.length == 2) {
 					info(accountInfo.getAccountInfo(token, ""));
-				}else{
+				} else {
 					String locale = args[2];
 					info(accountInfo.getAccountInfo(token, locale));
 				}
 				break;
-	
+
 			} else {
 				throw new Exception("Invalid info arguments command format should be : info {accessToken} {locale}");
 			}
 		}
 		case LIST_OPERATION: {
-			if (args.length < 3) {
-				System.out.println("got here arg gt 3");
+			if (args.length < 2) {
 				throw new Exception("Invalid list arguments command format should be : list {accessToken} {path}");
 			} else {
-				System.out.println("got here arg gt 3");
-				String token = args[1];
-				String path = args[2];
-
-				list(listContent.listContent(token, path), path);
-				// if (args.length > 3) {
-				// System.out.println("got here arg gt 3");
-				// String token = args[1];
-				// String path = args[2];
-				//
-				// list(listContent.listContent(token, path), path);
-				// } else {
-				// System.out.println("got here arg lt 3");
-				// String token = args[1];
-				// String path = args[2];
-				// System.out.println("path is " + path);
-				// System.out.println("token is " + token);
-				// list(listContent.listContent(token, path), path);
-				// }
-
+				if (args.length == 3) {
+					String token = args[1];
+					String path = args[2];
+					list(listContent.listContent(token, path, ""), path);
+				} else {
+					String token = args[1];
+					String path = args[2];
+					String locale = args[3];					
+					list(listContent.listContent(token, path, locale), path);
+				}
 			}
 			break;
 		}
