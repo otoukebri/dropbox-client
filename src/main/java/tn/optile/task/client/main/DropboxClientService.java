@@ -130,13 +130,13 @@ public class DropboxClientService {
 
 
 	public  void info(FullAccount fullAccount) {
-//		System.out.println("User ID: " + fullAccount.getAccountId());
-//		System.out.println("Display name!: " + fullAccount.getName().getDisplayName());
-//		System.out.println("Name: " + fullAccount.getName().getGivenName() + " " + fullAccount.getName().getSurname()
-//				+ " " + fullAccount.getName().getFamiliarName());
+		System.out.println("User ID: " + fullAccount.getAccountId());
+		System.out.println("Display name!: " + fullAccount.getName().getDisplayName());
+		System.out.println("Name: " + fullAccount.getName().getGivenName() + " " + fullAccount.getName().getSurname()
+				+ " " + fullAccount.getName().getFamiliarName());
 		System.out.println("E-mail: " + fullAccount.getEmail());
-//		System.out.println("Country:" + fullAccount.getCountry());
-//		System.out.println("Referral link: " + fullAccount.getReferralLink());
+		System.out.println("Country:" + fullAccount.getCountry());
+		System.out.println("Referral link: " + fullAccount.getReferralLink());
 
 	}
 

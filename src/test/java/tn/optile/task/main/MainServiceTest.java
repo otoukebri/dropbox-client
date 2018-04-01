@@ -14,16 +14,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import com.dropbox.core.v2.common.RootInfo;
 import com.dropbox.core.v2.users.FullAccount;
+import com.dropbox.core.v2.users.Name;
+import com.dropbox.core.v2.userscommon.AccountType;
 
 import tn.optile.task.client.NativeDropboxImpl;
 import tn.optile.task.client.auth.AuthenticationImpl;
 import tn.optile.task.client.info.AccountInfoImpl;
 import tn.optile.task.client.list.ListContentImpl;
 import tn.optile.task.client.main.DropboxClientService;
+import tn.optile.task.common.CommonTest;
 
 @RunWith(JUnit4.class)
-public class MainServiceTest {
+public class MainServiceTest extends CommonTest{
 
 	private DropboxClientService mainService;
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -86,7 +90,7 @@ public class MainServiceTest {
 		AccountInfoImpl accountInfoImpl = mock(AccountInfoImpl.class);
 		ListContentImpl listContentImpl = mock(ListContentImpl.class);
 		DropboxClientService mainService = new DropboxClientService(authenticationImpl, accountInfoImpl, listContentImpl);
-		FullAccount fullAccount = mock(FullAccount.class);
+		FullAccount fullAccount =  getFullAccount();//mock(FullAccount.class);
 		when(fullAccount.getEmail()).thenReturn("jsmith@company.com");		
 		when(accountInfoImpl.getAccountInfo(anyString())).thenReturn(fullAccount);
 		String args[] = { "info" , "UFKsPn3tfIQAAAAAAAAIbIEFqzE4BZ6X9JAZwC8OmGrPa4CjKN1J2wzY7xIZ5bDh" };
@@ -108,5 +112,6 @@ public class MainServiceTest {
 		mainService.callService(args);
 
 	}
+
 	
 }
