@@ -33,10 +33,11 @@ public class AccountInfoTest extends CommonTest {
 
 	@Test
 	public void testInfoOk() throws Exception {
-		assertEquals("accountIdcccccccccccaccountIdccccccccccc", accountInfo.getAccountInfo(anyString()).getAccountId());
-		assertEquals("jsmith@company.com", accountInfo.getAccountInfo(anyString()).getEmail());
-		assertEquals("touka", accountInfo.getAccountInfo(anyString()).getName().getDisplayName());
-		assertEquals("givenName", accountInfo.getAccountInfo(anyString()).getName().getGivenName());
+		assertEquals("accountIdcccccccccccaccountIdccccccccccc", accountInfo.getAccountInfo(anyString(), 
+				anyString()).getAccountId());
+		assertEquals("jsmith@company.com", accountInfo.getAccountInfo(anyString(), anyString()).getEmail());
+		assertEquals("touka", accountInfo.getAccountInfo(anyString(), anyString()).getName().getDisplayName());
+		assertEquals("givenName", accountInfo.getAccountInfo(anyString(), anyString()).getName().getGivenName());
 	}
 
 	private NativeDropboxImpl nativeDropboxImplMock() throws Exception {
@@ -45,7 +46,7 @@ public class AccountInfoTest extends CommonTest {
 		FullAccount fullAccount = getFullAccount();
 		when(dbxClientV2.users()).thenReturn(dbxUserUsersRequests);
 		NativeDropboxImpl NativeDropboxDbxMock = mock(NativeDropboxImpl.class);
-		when(NativeDropboxDbxMock.getUserAccount(anyString())).thenReturn(fullAccount);
+		when(NativeDropboxDbxMock.getUserAccount(anyString(), anyString())).thenReturn(fullAccount);
 		return NativeDropboxDbxMock;
 	}
 

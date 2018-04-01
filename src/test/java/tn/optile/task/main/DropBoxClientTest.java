@@ -1,4 +1,5 @@
 package tn.optile.task.main;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -52,7 +53,6 @@ public class DropBoxClientTest {
 	public void setUp() {
 	}
 
-	
 	@Test
 	public void getAuthorizeUrlTest() throws Exception {
 		String redirectUri = "http://localhost/finish/with/state/test";
@@ -78,8 +78,10 @@ public class DropBoxClientTest {
 		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
 		when(nativeDropboxDbxMock.getAuthorizeUrl(anyString(), anyString())).thenReturn(authorizationUrl);
 		NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
-		assertEquals("https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=app_key", nativeDropboxImpl.getAuthorizeUrl("app_key", "secret_key"));
+		assertEquals("https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=app_key",
+				nativeDropboxImpl.getAuthorizeUrl("app_key", "secret_key"));
 	}
+
 	@Test
 	public void authenticateTest() throws Exception {
 
@@ -118,13 +120,13 @@ public class DropBoxClientTest {
 				params("code", "test-code", "state", extractQueryParam(authorizationUrl, "state")));
 		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
 		when(nativeDropboxDbxMock.authenticate(anyString())).thenReturn(actual);
-//		DropBoxClient client = new DropBoxClient(NativeDropboxDbxMock);
-//		System.out.println("client ==>!" + client.authenticate("xx"));
-//		NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
-//		assertEquals("test-access-token!",  nativeDropboxImpl.authenticate("xx"));
+		// DropBoxClient client = new DropBoxClient(NativeDropboxDbxMock);
+		// System.out.println("client ==>!" + client.authenticate("xx"));
+		// NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
+		// assertEquals("test-access-token!", nativeDropboxImpl.authenticate("xx"));
 
 	}
-//
+
 	@Test
 	public void getAcountInfoTest() throws DbxException, IOException, BadRequestException, BadStateException,
 			CsrfException, NotApprovedException, ProviderException {
@@ -135,17 +137,16 @@ public class DropBoxClientTest {
 		when(dbxUserUsersRequests.getCurrentAccount()).thenReturn(fullAccount);
 		when(fullAccount.getEmail()).thenReturn("xxxxxx");
 		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
-		when(nativeDropboxDbxMock.getUserAccount(anyString())).thenReturn(fullAccount);
-		
-//		DropBoxClient client = new DropBoxClient(nativeDropboxDbxMock);
-//		System.out.println("getEmail ==>!" + client.getAccountInfo(anyString()).getEmail());
-//		NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
-//		assertEquals("xxxxxx",  nativeDropboxImpl.getUserAccount("some_token").getEmail());
+		when(nativeDropboxDbxMock.getUserAccount(anyString(), anyString())).thenReturn(fullAccount);
+
+		// DropBoxClient client = new DropBoxClient(nativeDropboxDbxMock);
+		// System.out.println("getEmail ==>!" +
+		// client.getAccountInfo(anyString()).getEmail());
+		// NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
+		// assertEquals("xxxxxx",
+		// nativeDropboxImpl.getUserAccount("some_token").getEmail());
 	}
 
-
-	
-	
 	private static Map<String, String[]> params(String... pairs) {
 		if ((pairs.length % 2) != 0) {
 			fail("pairs must be a multiple of 2.");
@@ -187,6 +188,7 @@ public class DropBoxClientTest {
 			return null;
 		}
 	}
+
 	private static String extractQueryParam(String query, String param) {
 		Map<String, List<String>> params = toParamsMap(query);
 
@@ -203,6 +205,7 @@ public class DropBoxClientTest {
 
 		return values.get(0);
 	}
+
 	private static Iterable<HttpRequestor.Header> anyHeaders() {
 		return Matchers.<Iterable<HttpRequestor.Header>>any();
 	}

@@ -18,7 +18,7 @@ public class ListContentImpl implements IListContent {
 	}
 
 	public ListFolderResult listContent(String token, String path) throws ListFolderErrorException, DbxException {
-		DbxClientV2 dbxClient = nativeDropbox.initializeClient(token);
+		DbxClientV2 dbxClient = nativeDropbox.initializeClient(token, "");
 		ListFolderResult result = dbxClient.files().listFolder(path);
 //		dbxClient.files().listFolderContinue(result.getCursor());
 		return result;

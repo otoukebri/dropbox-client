@@ -48,23 +48,18 @@ public class DropboxClientService {
 			}
 		}
 		case INFO_OPERATION: {
-			// info(args[1], null);
-			// if (args.length >= 1) {
-			// String token = args[0];
-			// accountInfo.getAccountInfo(token);
-			// info(args[1], args[2]);
-			// } else {
-			// info(args[1], null);
-			// }
-			// info(args[1], args[2]);
-			// } else {
-			if (args.length == 2) {
+			if (args.length >= 2) {
 				String token = args[1];
-				info(accountInfo.getAccountInfo(token));
+				if (args.length == 2) {
+					info(accountInfo.getAccountInfo(token, ""));
+				}else{
+					String locale = args[2];
+					info(accountInfo.getAccountInfo(token, locale));
+				}
 				break;
+	
 			} else {
 				throw new Exception("Invalid info arguments command format should be : info {accessToken} {locale}");
-				//return;
 			}
 		}
 		case LIST_OPERATION: {
@@ -76,21 +71,21 @@ public class DropboxClientService {
 				String token = args[1];
 				String path = args[2];
 
-				list(listContent.listContent(token, path), path);				
-//				if (args.length > 3) {
-//					System.out.println("got here arg gt 3");
-//					String token = args[1];
-//					String path = args[2];
-//
-//					list(listContent.listContent(token, path), path);
-//				} else {
-//					System.out.println("got here arg lt 3");
-//					String token = args[1];
-//					String path = args[2];
-//					System.out.println("path is " + path);
-//					System.out.println("token is " + token);
-//					list(listContent.listContent(token, path), path);
-//				}
+				list(listContent.listContent(token, path), path);
+				// if (args.length > 3) {
+				// System.out.println("got here arg gt 3");
+				// String token = args[1];
+				// String path = args[2];
+				//
+				// list(listContent.listContent(token, path), path);
+				// } else {
+				// System.out.println("got here arg lt 3");
+				// String token = args[1];
+				// String path = args[2];
+				// System.out.println("path is " + path);
+				// System.out.println("token is " + token);
+				// list(listContent.listContent(token, path), path);
+				// }
 
 			}
 			break;
@@ -100,7 +95,7 @@ public class DropboxClientService {
 		}
 	}
 
-	public  void list(ListFolderResult result , String path) throws ListFolderErrorException, DbxException {
+	public void list(ListFolderResult result, String path) throws ListFolderErrorException, DbxException {
 		System.out.println(path);
 		while (true) {
 			for (Metadata metadata : result.getEntries()) {
@@ -115,7 +110,7 @@ public class DropboxClientService {
 				} else if (metadata instanceof FolderMetadata) {
 					StringBuilder sb = new StringBuilder();
 					sb.append("- /" + metadata.getName() + "  " + "folder " + " ");
-//					FolderMetadata folderMetadata = (FolderMetadata) metadata;
+					// FolderMetadata folderMetadata = (FolderMetadata) metadata;
 					System.out.println(sb.toString());
 				}
 			}
@@ -126,10 +121,8 @@ public class DropboxClientService {
 		}
 
 	}
-	
 
-
-	public  void info(FullAccount fullAccount) {
+	public void info(FullAccount fullAccount) {
 		System.out.println("User ID: " + fullAccount.getAccountId());
 		System.out.println("Display name!: " + fullAccount.getName().getDisplayName());
 		System.out.println("Name: " + fullAccount.getName().getGivenName() + " " + fullAccount.getName().getSurname()
@@ -145,10 +138,10 @@ public class DropboxClientService {
 		System.out.println(authMsg);
 		String authenticationUrl = authentication.authorize(appKey, secretKey);
 		System.out.println(authenticationUrl);
-		String token =  authentication.readArgument();
+		String token = authentication.readArgument();
 		String authenticationToken = authentication.authenticate(token);
 		System.out.println("Your access token: " + authenticationToken);
-		return authenticationToken	;
+		return authenticationToken;
 	}
 
 	private String displayAuthenticateMessage() {
@@ -162,6 +155,5 @@ public class DropboxClientService {
 		sb.append("");
 		return sb.toString();
 	}
-
 
 }

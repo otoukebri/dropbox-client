@@ -50,7 +50,7 @@ public class ListContentTest {
 		DbxUserFilesRequests dbxUserFilesRequests = mock(DbxUserFilesRequests.class);
 		ListFolderResult listFolderResult = mock(ListFolderResult.class);
 
-		when(nativeDropboxDbxMock.initializeClient(anyString())).thenReturn(dbxClientV2);
+		when(nativeDropboxDbxMock.initializeClient(anyString(), anyString())).thenReturn(dbxClientV2);
 		when(dbxClientV2.files()).thenReturn(dbxUserFilesRequests);
 		when(dbxUserFilesRequests.listFolder(anyString())).thenReturn(listFolderResult);			
 		when(listFolderResult.getEntries()).thenReturn(entries);

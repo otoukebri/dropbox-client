@@ -14,10 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.dropbox.core.v2.common.RootInfo;
 import com.dropbox.core.v2.users.FullAccount;
-import com.dropbox.core.v2.users.Name;
-import com.dropbox.core.v2.userscommon.AccountType;
 
 import tn.optile.task.client.NativeDropboxImpl;
 import tn.optile.task.client.auth.AuthenticationImpl;
@@ -92,7 +89,7 @@ public class MainServiceTest extends CommonTest{
 		DropboxClientService mainService = new DropboxClientService(authenticationImpl, accountInfoImpl, listContentImpl);
 		FullAccount fullAccount =  getFullAccount();//mock(FullAccount.class);
 		when(fullAccount.getEmail()).thenReturn("jsmith@company.com");		
-		when(accountInfoImpl.getAccountInfo(anyString())).thenReturn(fullAccount);
+		when(accountInfoImpl.getAccountInfo(anyString(), anyString())).thenReturn(fullAccount);
 		String args[] = { "info" , "UFKsPn3tfIQAAAAAAAAIbIEFqzE4BZ6X9JAZwC8OmGrPa4CjKN1J2wzY7xIZ5bDh" };
 		mainService.callService(args);
 

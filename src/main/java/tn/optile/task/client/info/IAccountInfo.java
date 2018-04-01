@@ -6,5 +6,5 @@ import com.dropbox.core.v2.users.FullAccount;
 
 public interface IAccountInfo {
 
-	public FullAccount getAccountInfo(String token) throws DbxApiException, DbxException;
+	public FullAccount getAccountInfo(String token, String locale) throws DbxApiException, DbxException;
 }

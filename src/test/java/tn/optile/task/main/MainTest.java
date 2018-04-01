@@ -14,4 +14,5 @@ public class MainTest {
 		String [] args = null;
 		Main.main(args);
 	}
+	
 }

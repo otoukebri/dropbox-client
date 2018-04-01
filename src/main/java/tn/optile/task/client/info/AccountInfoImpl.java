@@ -16,8 +16,9 @@ public class AccountInfoImpl implements IAccountInfo {
 		this.nativeDropbox = nativeDropbox;
 	}
 
-	public FullAccount getAccountInfo(String token) throws DbxApiException, DbxException {
-		return nativeDropbox.getUserAccount(token);
+	public FullAccount getAccountInfo(String token, String locale)
+			throws DbxApiException, DbxException {
+		return nativeDropbox.getUserAccount(token, locale);
 
 	}
 
