@@ -6,7 +6,7 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.users.FullAccount;
 
-public interface INativeDropbox {
+public interface IDropboxClient {
 	 String getAuthorizeUrl(String appKey, String secretKey);
 	 DbxAuthFinish authenticate(String code);
 	 FullAccount getUserAccount(String token, String locate) throws DbxApiException, DbxException;

@@ -29,7 +29,7 @@ import com.dropbox.core.DbxSessionStore;
 import com.dropbox.core.DbxWebAuth;
 import com.dropbox.core.http.HttpRequestor;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 import tn.optile.task.client.auth.AuthenticationImpl;
 import tn.optile.task.client.auth.IAuthentication;
 
@@ -40,7 +40,7 @@ public class AuthenticationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		NativeDropboxImpl nativeDropbox = mockTest();
+		DropboxClientImpl nativeDropbox = mockTest();
 		authentication = new AuthenticationImpl(nativeDropbox, new BufferedReader(new InputStreamReader(System.in)));
 	}
 
@@ -48,7 +48,7 @@ public class AuthenticationTest {
 	
 	@Test
 	public void readArgumentTest() throws Exception {
-		NativeDropboxImpl nativeDropbox = mockTest();
+		DropboxClientImpl nativeDropbox = mockTest();
 		BufferedReader scanner = mock(BufferedReader.class);
 		when(scanner.readLine()).thenReturn("token");
 		IAuthentication authentication1 = new AuthenticationImpl(nativeDropbox, scanner);
@@ -65,7 +65,7 @@ public class AuthenticationTest {
 		assertEquals("test-access-token!", authentication.authenticate("xx"));
 	}
 
-	private NativeDropboxImpl mockTest() throws Exception {
+	private DropboxClientImpl mockTest() throws Exception {
 		DbxRequestConfig CONFIG = DbxRequestConfig.newBuilder("DbxWebAuthTest/1.0").withUserLocaleFrom(Locale.UK)
 				.build();
 		DbxAppInfo APP = new DbxAppInfo("test-key", "test-secret");
@@ -96,7 +96,7 @@ public class AuthenticationTest {
 		DbxAuthFinish actual = new DbxWebAuth(mockConfig, APP).finishFromRedirect(redirectUri, sessionStore,
 				params("code", "test-code", "state", extractQueryParam(authorizationUrl, "state")));
 
-		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		DropboxClientImpl nativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		when(nativeDropboxDbxMock.getAuthorizeUrl(anyString(), anyString())).thenReturn("http://some/url");
 		when(nativeDropboxDbxMock.authenticate(anyString())).thenReturn(actual);
 		return nativeDropboxDbxMock;

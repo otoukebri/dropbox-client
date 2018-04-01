@@ -5,14 +5,14 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.users.FullAccount;
 import com.google.inject.Inject;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 
 public class AccountInfoImpl implements IAccountInfo {
 
-	private NativeDropboxImpl nativeDropbox;
+	private DropboxClientImpl nativeDropbox;
 	
 	@Inject
-	public AccountInfoImpl(NativeDropboxImpl nativeDropbox) {
+	public AccountInfoImpl(DropboxClientImpl nativeDropbox) {
 		this.nativeDropbox = nativeDropbox;
 	}
 

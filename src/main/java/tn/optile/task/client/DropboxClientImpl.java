@@ -9,13 +9,13 @@ import com.dropbox.core.DbxWebAuth;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.users.FullAccount;
 
-public class NativeDropboxImpl implements INativeDropbox {
+public class DropboxClientImpl implements IDropboxClient {
 
 	private DbxWebAuth webAuth;
 	private final String CLIENT_IDENTIFIER = "examples-authorize";
 	private DbxRequestConfig requestConfig;
 
-	public NativeDropboxImpl() {
+	public DropboxClientImpl() {
 		requestConfig = new DbxRequestConfig(CLIENT_IDENTIFIER);
 	}
 

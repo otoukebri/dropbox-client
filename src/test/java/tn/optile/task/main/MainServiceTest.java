@@ -16,7 +16,7 @@ import org.junit.runners.JUnit4;
 
 import com.dropbox.core.v2.users.FullAccount;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 import tn.optile.task.client.auth.AuthenticationImpl;
 import tn.optile.task.client.info.AccountInfoImpl;
 import tn.optile.task.client.list.ListContentImpl;
@@ -34,7 +34,7 @@ public class MainServiceTest extends CommonTest{
 	public void setUp() {
 		System.setOut(new PrintStream(outContent));
 		System.setErr(new PrintStream(errContent));
-		NativeDropboxImpl nativeDropbox = new NativeDropboxImpl();
+		DropboxClientImpl nativeDropbox = new DropboxClientImpl();
 		mainService = new DropboxClientService(new AuthenticationImpl(nativeDropbox,new BufferedReader(new InputStreamReader(System.in))),
 				new AccountInfoImpl(nativeDropbox), new ListContentImpl(nativeDropbox));
 	}

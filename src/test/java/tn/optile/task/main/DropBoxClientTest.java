@@ -41,7 +41,7 @@ import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.users.DbxUserUsersRequests;
 import com.dropbox.core.v2.users.FullAccount;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 
 public class DropBoxClientTest {
 
@@ -75,9 +75,9 @@ public class DropBoxClientTest {
 		when(mockUploader.getBody()).thenReturn(body);
 		when(mockUploader.finish()).thenReturn(finishResponse);
 		when(mockRequestor.startPost(anyString(), anyListOf(HttpRequestor.Header.class))).thenReturn(mockUploader);
-		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		DropboxClientImpl nativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		when(nativeDropboxDbxMock.getAuthorizeUrl(anyString(), anyString())).thenReturn(authorizationUrl);
-		NativeDropboxImpl nativeDropboxImpl = new NativeDropboxImpl();
+		DropboxClientImpl nativeDropboxImpl = new DropboxClientImpl();
 		assertEquals("https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=app_key",
 				nativeDropboxImpl.getAuthorizeUrl("app_key", "secret_key"));
 	}
@@ -118,7 +118,7 @@ public class DropBoxClientTest {
 
 		DbxAuthFinish actual = new DbxWebAuth(mockConfig, APP).finishFromRedirect(redirectUri, sessionStore,
 				params("code", "test-code", "state", extractQueryParam(authorizationUrl, "state")));
-		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		DropboxClientImpl nativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		when(nativeDropboxDbxMock.authenticate(anyString())).thenReturn(actual);
 		// DropBoxClient client = new DropBoxClient(NativeDropboxDbxMock);
 		// System.out.println("client ==>!" + client.authenticate("xx"));
@@ -136,7 +136,7 @@ public class DropBoxClientTest {
 		when(dbxClientV2.users()).thenReturn(dbxUserUsersRequests);
 		when(dbxUserUsersRequests.getCurrentAccount()).thenReturn(fullAccount);
 		when(fullAccount.getEmail()).thenReturn("xxxxxx");
-		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		DropboxClientImpl nativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		when(nativeDropboxDbxMock.getUserAccount(anyString(), anyString())).thenReturn(fullAccount);
 
 		// DropBoxClient client = new DropBoxClient(nativeDropboxDbxMock);

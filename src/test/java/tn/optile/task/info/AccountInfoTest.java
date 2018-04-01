@@ -14,7 +14,7 @@ import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.users.DbxUserUsersRequests;
 import com.dropbox.core.v2.users.FullAccount;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 import tn.optile.task.client.info.AccountInfoImpl;
 import tn.optile.task.client.info.IAccountInfo;
 import tn.optile.task.common.CommonTest;
@@ -26,7 +26,7 @@ public class AccountInfoTest extends CommonTest {
 
 	@Before
 	public void setUp() throws Exception {
-		NativeDropboxImpl nativeDropboxDbxMock = nativeDropboxImplMock();
+		DropboxClientImpl nativeDropboxDbxMock = nativeDropboxImplMock();
 		accountInfo = new AccountInfoImpl(nativeDropboxDbxMock);
 
 	}
@@ -40,12 +40,12 @@ public class AccountInfoTest extends CommonTest {
 		assertEquals("givenName", accountInfo.getAccountInfo(anyString(), anyString()).getName().getGivenName());
 	}
 
-	private NativeDropboxImpl nativeDropboxImplMock() throws Exception {
+	private DropboxClientImpl nativeDropboxImplMock() throws Exception {
 		DbxClientV2 dbxClientV2 = mock(DbxClientV2.class);
 		DbxUserUsersRequests dbxUserUsersRequests = mock(DbxUserUsersRequests.class);
 		FullAccount fullAccount = getFullAccount();
 		when(dbxClientV2.users()).thenReturn(dbxUserUsersRequests);
-		NativeDropboxImpl NativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+		DropboxClientImpl NativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		when(NativeDropboxDbxMock.getUserAccount(anyString(), anyString())).thenReturn(fullAccount);
 		return NativeDropboxDbxMock;
 	}

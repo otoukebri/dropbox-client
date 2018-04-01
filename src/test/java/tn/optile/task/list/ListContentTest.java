@@ -20,7 +20,7 @@ import com.dropbox.core.v2.files.ListFolderErrorException;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 import tn.optile.task.client.list.IListContent;
 import tn.optile.task.client.list.ListContentImpl;
 
@@ -31,7 +31,7 @@ public class ListContentTest {
 
 	@Before
 	public void setUp() throws Exception {
-		NativeDropboxImpl nativeDropboxDbxMock = nativeDropboxImplMock();
+		DropboxClientImpl nativeDropboxDbxMock = nativeDropboxImplMock();
 		listContent = new ListContentImpl(nativeDropboxDbxMock);
 	}
 
@@ -43,8 +43,8 @@ public class ListContentTest {
 		assertEquals("test", entries.get(0).getName());
 	}
 
-	private NativeDropboxImpl nativeDropboxImplMock() throws Exception {
-		NativeDropboxImpl nativeDropboxDbxMock = mock(NativeDropboxImpl.class);
+	private DropboxClientImpl nativeDropboxImplMock() throws Exception {
+		DropboxClientImpl nativeDropboxDbxMock = mock(DropboxClientImpl.class);
 		List<Metadata> entries = Arrays.asList(new Metadata("test", "/toto", "dzedz", "dzd"));
 		DbxClientV2 dbxClientV2 = mock(DbxClientV2.class);
 		DbxUserFilesRequests dbxUserFilesRequests = mock(DbxUserFilesRequests.class);

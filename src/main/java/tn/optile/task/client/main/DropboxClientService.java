@@ -99,7 +99,6 @@ public class DropboxClientService {
 				} else if (metadata instanceof FolderMetadata) {
 					StringBuilder sb = new StringBuilder();
 					sb.append("- /" + metadata.getName() + "  " + "folder " + " ");
-					// FolderMetadata folderMetadata = (FolderMetadata) metadata;
 					System.out.println(sb.toString());
 				}
 			}

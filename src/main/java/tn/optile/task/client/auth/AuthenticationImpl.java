@@ -5,16 +5,16 @@ import java.io.IOException;
 
 import com.google.inject.Inject;
 
-import tn.optile.task.client.NativeDropboxImpl;
+import tn.optile.task.client.DropboxClientImpl;
 
 public class AuthenticationImpl implements IAuthentication {
 	
-	private NativeDropboxImpl nativeDropbox;
+	private DropboxClientImpl nativeDropbox;
 	private BufferedReader bufferedReader;
 	
 	
 	@Inject
-	public AuthenticationImpl(NativeDropboxImpl nativeDropbox, BufferedReader bufferedReader) {
+	public AuthenticationImpl(DropboxClientImpl nativeDropbox, BufferedReader bufferedReader) {
 		this.nativeDropbox =  nativeDropbox;
 		this.bufferedReader = bufferedReader;
 	}
